@@ -9,15 +9,19 @@ Be clear and concise in your writing. Bullets points are encouraged.
 ## Describe your Gallery (Milestone 1)
 > What will your gallery be about? 1 sentence.
 
+- My gallery will be about Studio Ghibli artwork/photos.
 
 > Will you be using your existing Project 1 or Project 2 site for this project? If yes, which project?
 
+- I will be using my Project 2 website
 
 > If using your existing Project 1 or Project 2, please upload sketches of your final design here.
 
 
 ## Target Audience(s) (Milestone 1)
 > Tell us about your target audience(s).
+
+- My target audience is fans of Studio Ghibli who want to look at different artwork for inspiration for their own Studio Ghibli inspired works
 
 
 ## Design Process (Milestone 1)
