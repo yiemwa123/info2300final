@@ -148,7 +148,7 @@ id : INTEGER {PK, U, Not, AI}
 name: TEXT {U, Not}
 year: INTEGER {}
 rating: TEXT {}
-synopsis: TEXT {U}
+synopsis: TEXT {}
 image_id: INTEGER {}
 )
 
@@ -156,7 +156,6 @@ images (
 id : INTEGER {PK, U, Not, AI}
 image_name: TEXT {U, Not}
 image_ext: TEXT {Not}
-movie_id: INTEGER {}
 )
 
 tags (
@@ -246,6 +245,9 @@ if get request to view movie information{
 if uploaded image has correct file size and extension{
     insert into images table
     update foreign keys
+}
+function movieblock {
+    display movie and title
 }
 ```
 
