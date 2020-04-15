@@ -50,7 +50,7 @@ CREATE TABLE tags (
 
 INSERT INTO tags (id, tag_name, image_id) VALUES (1, 'magic', 1);
 INSERT INTO tags (id, tag_name, image_id) VALUES (2, 'spirit', 2);
-INSERT INTO tags (id, tag_name, image_id) VALUES (3, 'animal', 5);
+INSERT INTO tags (id, tag_name, image_id) VALUES (3, 'animal', 1);
 INSERT INTO tags (id, tag_name, image_id) VALUES (4, 'flying', 7);
 INSERT INTO tags (id, tag_name, image_id) VALUES (5, 'little', 10);
 
