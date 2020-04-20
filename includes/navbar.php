@@ -31,7 +31,7 @@
 function printblock($img, $moviename){?>
 
 <div class="block">
-  <img src=<?php echo($img);?> alt="Theatrical poster for <?php echo ($moviename)?>"/>
+  <img src="<?php echo($img);?>" alt="Theatrical poster for <?php echo ($moviename)?>"/>
   <p> <?php echo ($moviename)?> </p>
 </div>
 

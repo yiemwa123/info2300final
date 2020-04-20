@@ -1,4 +1,6 @@
-<?php include("includes/init.php"); ?>
+<?php include("includes/init.php");
+const inputs = array("Title: " => "title", "Year: " => "year", "Rating: " => "rating", "Synopsis: " => "synopsis", "Tag: " => "tag"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,35 +10,31 @@
     <link rel="stylesheet" type="text/css" href="styles/site.css" media="all" />
 </head>
 
+<?php
+
+// function that prints all the inputs for the form
+function printinput()
+{
+    foreach (inputs as $field => $value) { ?>
+        <div class=row>
+            <label class="label" for="<?php echo $value; ?>"> <?php echo $field ?> </label>
+            <input id="<?php echo $value; ?>" type="text" name="<?php echo $value; ?>" />
+        </div>
+
+<?php }
+} ?>
+
 <body>
     <?php include("includes/navbar.php"); ?>
     <h2> Add Movie </h2>
 
     <form id="addmovie" action="form.php" method="post" novalidate>
-        <div class=row>
-            <label class="label" for="title"> Title: </label>
-            <input id="title" type="text" name="title" />
-        </div>
-        <div class="row">
-            <label class="label" for="year"> Year: </label>
-            <input id="year" type="text" name="year" />
-        </div>
-        <div class="row">
-            <label class="label" for="rating"> Rating: </label>
-            <input id="rating" type="text" name="rating" />
-        </div>
-        <div class="row">
-            <label class="label" for="synopsis"> Synopsis: </label>
-            <input id="synopsis" type="text" name="synopsis" />
-        </div>
+        <?php printinput(); ?>
         <!-- insert upload button here -->
-        <div class="row">
-            <label class="label" for="tag"> Tag: </label>
-            <input id="tag" type="text" name="tags" />
+        <div class="formbutton">
+            <button class="addmovie" type="submit"> Add Movie</button>
         </div>
-        <button class="plus" type="submit"> Add Movie</button>
     </form>
-
 </body>
 
 </html>
