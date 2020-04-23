@@ -27,32 +27,46 @@ INSERT INTO movies (id, movie_name, year, rating, synopsis, image_id)  VALUES (1
 CREATE TABLE images (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     image_name TEXT NOT NULL,
-    image_ext TEXT NOT NULL,
-    tag_id INTEGER
+    image_ext TEXT NOT NULL
 );
 
-INSERT INTO images (id, image_name, image_ext, tag_id) VALUES (1, 'ponyo.png', 'png', 1);
-INSERT INTO images (id, image_name, image_ext, tag_id) VALUES (2, 'totoro.jpg', 'jpg', 2);
-INSERT INTO images (id, image_name, image_ext, tag_id) VALUES (3, 'spirit.png', 'png', 2);
-INSERT INTO images (id, image_name, image_ext, tag_id) VALUES (4, 'howl.jpg', 'jpg', 1);
-INSERT INTO images (id, image_name, image_ext, tag_id) VALUES (5, 'pom.jpg', 'jpg', 3);
-INSERT INTO images (id, image_name, image_ext, tag_id) VALUES (6, 'castle.png', 'png', 1);
-INSERT INTO images (id, image_name, image_ext, tag_id) VALUES (7, 'kiki.jpg', 'jpg', 4);
-INSERT INTO images (id, image_name, image_ext, tag_id) VALUES (8, 'nausicaa.jpg', 'jpg', 4);
-INSERT INTO images (id, image_name, image_ext, tag_id) VALUES (9, 'porco.jpg', 'jpg', 3);
-INSERT INTO images (id, image_name, image_ext, tag_id) VALUES (10, 'secret.png', 'png', 5);
+INSERT INTO images (id, image_name, image_ext) VALUES (1, 'ponyo.png', 'png');
+INSERT INTO images (id, image_name, image_ext) VALUES (2, 'totoro.jpg', 'jpg');
+INSERT INTO images (id, image_name, image_ext) VALUES (3, 'spirit.png', 'png');
+INSERT INTO images (id, image_name, image_ext) VALUES (4, 'howl.jpg', 'jpg');
+INSERT INTO images (id, image_name, image_ext) VALUES (5, 'pom.jpg', 'jpg');
+INSERT INTO images (id, image_name, image_ext) VALUES (6, 'castle.png', 'png');
+INSERT INTO images (id, image_name, image_ext) VALUES (7, 'kiki.jpg', 'jpg');
+INSERT INTO images (id, image_name, image_ext) VALUES (8, 'nausicaa.jpg', 'jpg');
+INSERT INTO images (id, image_name, image_ext) VALUES (9, 'porco.jpg', 'jpg');
+INSERT INTO images (id, image_name, image_ext) VALUES (10, 'secret.png', 'png');
 
 CREATE TABLE tags (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    tag_name TEXT NOT NULL UNIQUE,
-    image_id INTEGER
+    tag_name TEXT NOT NULL UNIQUE
 );
 
-INSERT INTO tags (id, tag_name, image_id) VALUES (1, 'magic', 1);
-INSERT INTO tags (id, tag_name, image_id) VALUES (2, 'spirit', 2);
-INSERT INTO tags (id, tag_name, image_id) VALUES (3, 'animal', 1);
-INSERT INTO tags (id, tag_name, image_id) VALUES (4, 'flying', 7);
-INSERT INTO tags (id, tag_name, image_id) VALUES (5, 'little', 10);
+INSERT INTO tags (id, tag_name) VALUES (1, 'magic');
+INSERT INTO tags (id, tag_name) VALUES (2, 'spirit');
+INSERT INTO tags (id, tag_name) VALUES (3, 'animal');
+INSERT INTO tags (id, tag_name) VALUES (4, 'flying');
+INSERT INTO tags (id, tag_name) VALUES (5, 'little');
+INSERT INTO tags (id, tag_name) VALUES (6, 'girl');
+
+
+CREATE TABLE imagetotag (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    image_id INTEGER NOT NULL,
+    tag_id INTEGER NOT NULL
+);
+
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (1, 1, 1);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (2, 1, 3);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (3, 1, 6);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (4, 2, 2);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (5, 3, 2);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (6, 3, 6);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (7, 4, 1);
 
 -- CREATE TABLE `examples` (
 -- 	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,

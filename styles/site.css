@@ -8,7 +8,6 @@ body{
     border: solid;
     border-width: 2px;
     margin-top: 5%;
-    width: 100%;
 
 }
 .search .bar{
@@ -21,41 +20,138 @@ body{
 }
 .heading{
     display: flex;
-    margin-bottom: 2.5%;
     background-color:#47AEF0;
-    height: 100%;
+    margin-bottom: 0px;
+    /* height: 100%; */
 }
 .row{
     display: flex;
+    margin-bottom: 10px;
 }
-.row .label{
-    flex-basis: 7%;
+.label{
+    flex-basis: 45%;
     text-align: right;
 }
 #allform input{
     margin-left: 20px;
 }
 .group{
-    margin-left: 5%;
+    margin-left: 3%;
 }
 .logo{
-    margin-left: 2%;
+    margin-left: 5%;
     margin-top: 1%;
 }
 .block{
     display: inline-block;
-    background-color: white;
+    background-color: #ebdeded5;
     border: solid;
+    border-color: #353333;
     border-width: 2px;
+    text-decoration: none;
 }
 .content{
     margin-left: 2%;
 }
-.row{
-    margin-top: 5px;
-}
+
 .formbutton{
     display: flex;
     justify-content: flex-end;
-    width: 10%
+    width: 60%;
+}
+.block{
+    margin-left: 3%;
+    margin-top: 2%;
+}
+h2{
+    margin-left: 3%;
+    margin-bottom: 0px;
+}
+.moviename{
+    margin-left: 3px;
+    font-weight: bold;
+    color: black;
+}
+.block a{
+    text-decoration: none;
+}
+
+.block {
+    text-decoration: none;
+}
+
+.links ul{
+    margin-top: 8%;
+    display: flex;
+}
+.links ul li{
+    display: inline-block;
+    border: solid;
+    border-width: 2px;
+    background-color: #f88787;
+    padding: 10px;
+}
+ul li a{
+    text-decoration: none;
+    width: 100%;
+    color: black;
+}
+.other{
+    margin-left: 20px;
+}
+ul .other:hover{
+    border-color: white;
+    background-color: #f79f9f;
+    border-radius: 20px;
+    font-weight: bold;
+}
+.formhead{
+    margin-left: 45%;
+    margin-bottom: 20px;
+}
+.addmovie{
+    background-color: #f88787;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+}
+.addmovie:hover{
+    border-color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.leftside{
+    display: flex;
+    /* flex-direction: column;
+    justify-content: flex-end; */
+}
+.details{
+    margin-left: 30px;
+}
+.imagedetails{
+    display: flex;
+    justify-content: center;
+}
+.movieposter{
+    text-decoration: none;
+}
+.tags{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.tags li{
+    display: inline-block;
+    background-color: #cea6f3;
+    padding: 10px;
+    margin: 0px 10px 10px 10px;
+}
+.searchandnav{
+    background-color:#47AEF0;
+}
+.detailspage h2{
+    margin-left: 40%;
+    margin-bottom: 20px;
 }

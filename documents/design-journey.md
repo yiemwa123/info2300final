@@ -161,8 +161,14 @@ image_ext: TEXT {Not}
 tags (
 id : INTEGER {PK, U, Not, AI}
 tag_name: TEXT {U, Not}
-images_id: INTEGER {}
 )
+
+image_to_tag(
+    id : INTEGER {PK, U, Not, AI}
+    image_id: INTEGER {Not}
+    tag_id: INTEGER {Not}
+)
+
 
 ```
 
