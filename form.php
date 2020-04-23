@@ -37,6 +37,19 @@ if (isset($_POST["addmovie"])) {
             $sql = "INSERT INTO movies (movie_name, year, rating, synopsis, image_id) VALUES (:moviename, :year, :rating, :synopsis, :lastid);";
             $params = array(':moviename' => $title, ':year' => $year, ':rating' => $rating, ':synopsis' => $synopsis, ':lastid' => $lastid);
             $result = exec_sql_query($db, $sql, $params);
+
+            $sql = "INSERT INTO tags (tag_name) VALUES (:tag);";
+            $params = array(':tag' => $tag);
+            try{
+                $result = exec_sql_query($db, $sql, $params);
+            } catch (Exception $e){
+
+                //code to handle duplicate tags
+                //first find the id of that tag
+                //insert new entry into imagetotags table using $lastid and the id of the tag
+            }
+
+
         }
     }
 } ?>
