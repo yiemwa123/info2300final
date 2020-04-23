@@ -1,6 +1,8 @@
 <?php include("includes/init.php");
 
 //preliminary code for qsp still gotta filter input and escape output
+//doesn't work on the images with no tags
+
 $movie_id = $_GET["id"];
 settype($movie_id, "integer");
 $sql = "SELECT movies.movie_name, images.image_ext, tags.tag_name, movies.image_id, movies.year, movies.rating, movies.synopsis FROM movies INNER JOIN images ON movies.image_id=images.id INNER JOIN imagetotag ON images.id=imagetotag.image_id INNER JOIN tags ON tags.id=imagetotag.tag_id WHERE (movies.id=:id);";
