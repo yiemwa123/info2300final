@@ -10,8 +10,8 @@ $rating = $_POST['rating'];
 $rating = filter_var($rating, FILTER_SANITIZE_STRING);
 $synopsis = $_POST['synopsis'];
 $synopsis = filter_var($synopsis, FILTER_SANITIZE_STRING);
-$tag = $_POST['tag'];
-$tag = filter_var($tag, FILTER_SANITIZE_STRING);
+$taginput = $_POST['tag'];
+$taginput = filter_var($taginput, FILTER_SANITIZE_STRING);
 
 
 
@@ -29,27 +29,44 @@ if (isset($_POST["addmovie"])) {
         $result = exec_sql_query($db, $sql, $params);
         if ($result) {
             $temp_loc = $poster["tmp_name"];
-            $lastid = $db->lastInsertId("id");
+            $lastimageid = $db->lastInsertId("id");
             settype($lastid, "string");
-            $new_path = "uploads/images/" . $lastid . "." . $poster_ext;
+            $new_path = "uploads/images/" . $lastimageid . "." . $poster_ext;
             move_uploaded_file($temp_loc, $new_path);
 
             $sql = "INSERT INTO movies (movie_name, year, rating, synopsis, image_id) VALUES (:moviename, :year, :rating, :synopsis, :lastid);";
-            $params = array(':moviename' => $title, ':year' => $year, ':rating' => $rating, ':synopsis' => $synopsis, ':lastid' => $lastid);
+            $params = array(':moviename' => $title, ':year' => $year, ':rating' => $rating, ':synopsis' => $synopsis, ':lastid' => $lastimageid);
             $result = exec_sql_query($db, $sql, $params);
+            $lastmovieid=$db->lastInsertId();
 
-            $sql = "INSERT INTO tags (tag_name) VALUES (:tag);";
-            $params = array(':tag' => $tag);
-            try{
-                $result = exec_sql_query($db, $sql, $params);
-            } catch (Exception $e){
 
-                //code to handle duplicate tags
-                //first find the id of that tag
-                //insert new entry into imagetotags table using $lastid and the id of the tag
+            $tags=preg_split("/[\s,#]+/", $taginput, NULL, PREG_SPLIT_NO_EMPTY);
+
+            foreach ($tags as $tag) {
+                $sql = "INSERT INTO tags (tag_name) VALUES (:tag);";
+                $params = array(':tag' => $tag);
+                try {
+                    var_dump("successful");
+                    $result = exec_sql_query($db, $sql, $params);
+                    $lasttagid = $db->lastInsertId();
+                    $sql="INSERT INTO imagetotag (image_id, tag_id) VALUES (:imageid, :tagid);";
+                    $params = array(':imageid' => $lastimageid, ":tagid"=>$lasttagid);
+
+                } catch(Exception $e){
+                    var_dump("catch");
+                    $sql="SELECT id FROM tags WHERE tag_name=:tag;";
+                    $params = array(':tag' => $tag);
+                    $result = exec_sql_query($db, $sql, $params);
+                    $records=$result->fetchALL();
+                    $tag_id=$records[0]["id"];
+                    var_dump($tag_id);
+                    settype($tag_id,"integer");
+                    $sql="INSERT INTO imagetotag (image_id, tag_id) VALUES (:imageid, :tagid);";
+                    $params = array(':imageid' => $lastimageid, ":tagid"=>$tag_id);
+                    exec_sql_query($db, $sql, $params);
+
+                }
             }
-
-
         }
     }
 } ?>

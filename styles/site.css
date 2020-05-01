@@ -1,5 +1,5 @@
 body{
-    background-color: #e0cb9a;
+    background-color: #b2c1f1;
     font-family: sans-serif;
     margin: 0px;
 }
@@ -81,7 +81,7 @@ h2{
 }
 
 .links ul{
-    margin-top: 8%;
+    margin-top: 12%;
     display: flex;
 }
 .links ul li{
@@ -128,7 +128,8 @@ ul .other:hover{
     justify-content: flex-end; */
 }
 .details{
-    margin-left: 30px;
+    margin-left: 40px;
+    margin-top: 15%;
 }
 .imagedetails{
     display: flex;
@@ -152,6 +153,30 @@ ul .other:hover{
     background-color:#47AEF0;
 }
 .detailspage h2{
-    margin-left: 40%;
+    display: flex;
+    justify-content: center;
     margin-bottom: 20px;
+}
+
+.block img{
+    height: 382px;
+    width: 270px;
+}
+/* .column{
+    display: flex;
+    flex-direction: column;
+} */
+.menu{
+    position: relative;
+}
+.opacity{
+    opacity:0.5;
+}
+.hidden{
+    display:none;
+}
+#delete{
+    position: absolute;
+    top:4%;
+    left: 80%;
 }

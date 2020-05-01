@@ -7,7 +7,7 @@
     <p> Source: <cite><a href="https://filmschoolrejects.com/the-movies-of-studio-ghibli-ranked-from-worst-to-best-b480bffd7fb7/">Film School Rejects</a></cite> </p>
   </div>
   <div class="group">
-    <form id="ghiblisearch" action="index.php" method="get" novalidate>
+    <form id="ghiblisearch" action="search.php" method="get" novalidate>
       <div class="search">
         <select name="field">
           <option value="title">Title</option>
@@ -25,7 +25,6 @@
   <div class="links">
     <ul>
       <li class="other"> <a href="index.php"> Home </a></li>
-      <li class="other"> <a href="allmovies.php"> All Movies </a></li>
       <li class="other"><a href="form.php"> + Add Movie </a></li>
     </ul>
   </div>
@@ -35,16 +34,15 @@
 <?php
 
 // This function prints out a block with a photo and movie name formatted properly
-function printblock($img, $moviename, $details)
+function printblock($img, $moviename, $details, $id)
 { ?>
 
   <div class="block">
-    <a href="<?php echo $details ?>">
-      <img src="<?php echo ($img); ?>" class="movieposter" alt="Theatrical poster for <?php echo ($moviename) ?>" />
-      <p class="moviename"> <?php echo ($moviename) ?> </p>
+      <a href="<?php echo $details ?>">
+        <img src="<?php echo ($img); ?>" class="movieposter" alt="Theatrical poster for <?php echo ($moviename) ?>" />
+    <p class="moviename"> <?php echo ($moviename) ?> </p>
     </a>
   </div>
-
 <?php }
 
 
@@ -59,7 +57,7 @@ function showresults($movies)
     $moviename = $movie["movie_name"];
     $ext = $movie["image_ext"];
     $details = "one.php?id=" . $id;
-    printblock("uploads/images/" . $id . "." . $ext, $moviename, $details);
+    printblock("uploads/images/" . $id . "." . $ext, $moviename, $details, $id);
   }
 }
 
@@ -83,7 +81,6 @@ if (isset($_GET["search"])) {
     $result = exec_sql_query($db, $sql, $params);
     if ($result) {
       $movies = $result->fetchALL();
-
     }
   }
 }
