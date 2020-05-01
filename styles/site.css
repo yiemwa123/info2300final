@@ -162,6 +162,10 @@ ul .other:hover{
     height: 382px;
     width: 270px;
 }
+#image{
+    height: 382px;
+    width: 270px;
+}
 /* .column{
     display: flex;
     flex-direction: column;

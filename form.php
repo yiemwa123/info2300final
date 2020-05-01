@@ -46,20 +46,18 @@ if (isset($_POST["addmovie"])) {
                 $sql = "INSERT INTO tags (tag_name) VALUES (:tag);";
                 $params = array(':tag' => $tag);
                 try {
-                    var_dump("successful");
                     $result = exec_sql_query($db, $sql, $params);
                     $lasttagid = $db->lastInsertId();
                     $sql="INSERT INTO imagetotag (image_id, tag_id) VALUES (:imageid, :tagid);";
+                    exec_sql_query($db, $sql, $params);
                     $params = array(':imageid' => $lastimageid, ":tagid"=>$lasttagid);
 
                 } catch(Exception $e){
-                    var_dump("catch");
                     $sql="SELECT id FROM tags WHERE tag_name=:tag;";
                     $params = array(':tag' => $tag);
                     $result = exec_sql_query($db, $sql, $params);
                     $records=$result->fetchALL();
                     $tag_id=$records[0]["id"];
-                    var_dump($tag_id);
                     settype($tag_id,"integer");
                     $sql="INSERT INTO imagetotag (image_id, tag_id) VALUES (:imageid, :tagid);";
                     $params = array(':imageid' => $lastimageid, ":tagid"=>$tag_id);
