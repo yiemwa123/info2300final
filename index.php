@@ -2,11 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Studio Ghibli</title>
-    <link rel="stylesheet" type="text/css" href="styles/site.css" media="all" />
-</head>
+<?php include("includes/head.php"); ?>
 
 <body>
 
@@ -16,18 +12,18 @@
     <div class="content">
         <h2>All Movies</h2>
         <?php
-        $sql = "SELECT movies.movie_name, images.image_ext, images.id FROM movies INNER JOIN images ON movies.image_id=images.id;";
+        $sql = "SELECT movies.movie_name, images.image_ext, movies.id, movies.sources FROM movies INNER JOIN images ON movies.image_id=images.id;";
         $exec = exec_sql_query($db, $sql);
         if ($exec) {
             $movies = $exec->fetchALL();
             foreach ($movies as $movie) {
-                $imageid = $movie["id"];
                 settype($id, "string");
                 $moviename = $movie["movie_name"];
                 $ext = $movie["image_ext"];
-                $movieid = $movie["movies.id"];
-                $details = "one.php?id=" . $imageid;
-                printblock("uploads/images/" . $imageid . "." . $ext, $moviename, $details, $imageid);
+                $movieid = $movie["id"];
+                $sources = $movie["sources"];
+                $details = "one.php?" . http_build_query(array('id'=>$movieid));
+                printblock("uploads/images/" . $movieid . "." . $ext, $moviename, $details, $sources);
             }
         }
 

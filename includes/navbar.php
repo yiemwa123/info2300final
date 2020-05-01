@@ -34,13 +34,14 @@
 <?php
 
 // This function prints out a block with a photo and movie name formatted properly
-function printblock($img, $moviename, $details, $id)
+function printblock($img, $moviename, $details, $source)
 { ?>
 
   <div class="block">
       <a href="<?php echo $details ?>">
         <img src="<?php echo ($img); ?>" class="movieposter" alt="Theatrical poster for <?php echo ($moviename) ?>" />
     <p class="moviename"> <?php echo ($moviename) ?> </p>
+    <cite>Source: <a href="<?php echo $source?>">Wikipedia</a></cite>
     </a>
   </div>
 <?php }
@@ -57,7 +58,8 @@ function showresults($movies)
     $moviename = $movie["movie_name"];
     $ext = $movie["image_ext"];
     $details = "one.php?id=" . $id;
-    printblock("uploads/images/" . $id . "." . $ext, $moviename, $details, $id);
+    $sources = $movie["sources"];
+    printblock("uploads/images/" . $id . "." . $ext, $moviename, $details, $sources);
   }
 }
 

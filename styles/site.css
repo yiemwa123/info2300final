@@ -129,7 +129,7 @@ ul .other:hover{
 }
 .details{
     margin-left: 40px;
-    margin-top: 15%;
+    margin-top: 5%;
 }
 .imagedetails{
     display: flex;
@@ -183,4 +183,29 @@ ul .other:hover{
     position: absolute;
     top:4%;
     left: 80%;
+}
+.tagrow{
+    display:flex;
+    margin-top: 0px;
+    margin-left: 20px;
+}
+.deletetag{
+    margin-top: 13px;
+    padding-top: 0px;
+    margin-left: 5px;
+}
+.descr{
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+#addtag{
+    margin-top: 15px;
+}
+.feedback{
+    color:#9b1212;
+    margin-left: 45%;
+    margin-bottom: 20px;
+}
+.already{
+    color: #9b1212;
 }

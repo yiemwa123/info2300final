@@ -30,11 +30,7 @@ function inlist($field, $listoffields)
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Home</title>
-  <link rel="stylesheet" type="text/css" href="styles/site.css" media="all" />
-</head>
+<?php include("includes/head.php"); ?>
 
 <body>
   <?php include("includes/navbar.php"); ?>
@@ -50,21 +46,39 @@ function inlist($field, $listoffields)
 
     <?php if (isset($_GET["search"])) {
       $moviesearch = $_GET['moviesearch'];
+      $moviesearch = filter_var($moviesearch, FILTER_SANITIZE_STRING);
       if ($_GET["field"] == "tags") {
-        $sql = "SELECT images.id, movies.movie_name, images.image_ext FROM movies INNER JOIN images ON movies.image_id=images.id INNER JOIN imagetotag ON images.id=imagetotag.image_id INNER JOIN tags ON tags.id=imagetotag.tag_id WHERE tag_name=:moviesearch;";
+        $sql = "SELECT movies.id, movies.movie_name, images.image_ext, movies.sources, imagetotag.image_id FROM movies INNER JOIN images ON movies.image_id=images.id INNER JOIN imagetotag ON images.id=imagetotag.image_id INNER JOIN tags ON tags.id=imagetotag.tag_id WHERE tag_name=:moviesearch;";
         $params = array(':moviesearch' => $moviesearch);
         $result = exec_sql_query($db, $sql, $params);
         if ($result) {
-
           $records = $result->fetchALL();
           foreach ($records as $movie) {
             $id = $movie["id"];
             settype($id, "string");
             $moviename = $movie["movie_name"];
             $ext = $movie["image_ext"];
-            $details = "one.php?id=" . $id;
-
-            printblock("uploads/images/" . $id . "." . $ext, $moviename, $details, $id);
+            $sources = $movie["sources"];
+            $details = "one.php?" . http_build_query(array('id' => $id));
+            $imageid = $movie["image_id"];
+            printblock("uploads/images/" . $imageid . "." . $ext, $moviename, $details, $sources);
+          }
+        }
+      } else if ($_GET["field"] == "title"){
+        $sql = "SELECT movies.id, movies.movie_name, images.image_ext, movies.sources, movies.image_id FROM movies INNER JOIN images ON movies.image_id=images.id WHERE movie_name LIKE :moviesearch || '%';";
+        $params = array(':moviesearch' => $moviesearch);
+        $result = exec_sql_query($db, $sql, $params);
+        if ($result) {
+          $records = $result->fetchALL();
+          foreach ($records as $movie) {
+            $id = $movie["id"];
+            settype($id, "string");
+            $moviename = $movie["movie_name"];
+            $ext = $movie["image_ext"];
+            $sources = $movie["sources"];
+            $details = "one.php?" . http_build_query(array('id' => $id));
+            $imageid = $movie["image_id"];
+            printblock("uploads/images/" . $imageid . "." . $ext, $moviename, $details, $sources);
           }
         }
       }
