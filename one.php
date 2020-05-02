@@ -23,7 +23,7 @@ if ($result) {
     $rating = $records[0]["rating"];
     $synopsis = $records[0]["synopsis"];
     $source = $records[0]["sources"];
-    $titletag=$records[0]["movie_name"];
+    $titletag = $records[0]["movie_name"];
 
 
     foreach ($records as $record) {
@@ -55,33 +55,35 @@ if ($result) {
         $taginput = $_POST["tag"];
         $taginput = filter_var($taginput, FILTER_SANITIZE_STRING);
         $tags = preg_split("/[\s,#]+/", $taginput, NULL, PREG_SPLIT_NO_EMPTY);
-        foreach ($tags as $tag) {
-            $sql = "INSERT INTO tags (tag_name) VALUES (:tag);";
-            $params = array(':tag' => $tag);
-            try {
-                $result = exec_sql_query($db, $sql, $params);
-                $lasttagid = $db->lastInsertId();
-                $sql = "INSERT INTO imagetotag (image_id, tag_id) VALUES (:imageid, :tagid);";
-                $params = array(':imageid' => $img, ":tagid" => $lasttagid);
-                exec_sql_query($db, $sql, $params);
-                $records = reload($db, $movie_id)->fetchALL();
-            } catch (Exception $e) {
-                $sql = "SELECT imagetotag.image_id, tags.id FROM tags INNER JOIN imagetotag ON imagetotag.tag_id=tags.id WHERE tags.tag_name=:tag AND imagetotag.image_id=:imgid;";
-                $params = array(':tag' => $tag, ":imgid" => $img);
-                $checks = exec_sql_query($db, $sql, $params);
-                if ($checks) {
-                    $results = $checks->fetchALL();
-                    if (count($results) == 0) {
-                        $sql = "SELECT id FROM tags WHERE tag_name=:tag";
-                        $params = array(':tag' => $tag);
-                        $checks = exec_sql_query($db, $sql, $params);
-                        $tag_id = $checks->fetchALL()[0]["id"];
-                        $sql = "INSERT INTO imagetotag (image_id, tag_id) VALUES (:imageid, :tagid);";
-                        $params = array(':imageid' => $img, ":tagid" => $tag_id);
-                        exec_sql_query($db, $sql, $params);
-                        $records = reload($db, $movie_id)->fetchALL();
-                    } else {
-                        $already = "This image already has this tag";
+        if (!empty($taginput)) {
+            foreach ($tags as $tag) {
+                $sql = "INSERT INTO tags (tag_name) VALUES (:tag);";
+                $params = array(':tag' => $tag);
+                try {
+                    $result = exec_sql_query($db, $sql, $params);
+                    $lasttagid = $db->lastInsertId();
+                    $sql = "INSERT INTO imagetotag (image_id, tag_id) VALUES (:imageid, :tagid);";
+                    $params = array(':imageid' => $img, ":tagid" => $lasttagid);
+                    exec_sql_query($db, $sql, $params);
+                    $records = reload($db, $movie_id)->fetchALL();
+                } catch (Exception $e) {
+                    $sql = "SELECT imagetotag.image_id, tags.id FROM tags INNER JOIN imagetotag ON imagetotag.tag_id=tags.id WHERE tags.tag_name=:tag AND imagetotag.image_id=:imgid;";
+                    $params = array(':tag' => $tag, ":imgid" => $img);
+                    $checks = exec_sql_query($db, $sql, $params);
+                    if ($checks) {
+                        $results = $checks->fetchALL();
+                        if (count($results) == 0) {
+                            $sql = "SELECT id FROM tags WHERE tag_name=:tag";
+                            $params = array(':tag' => $tag);
+                            $checks = exec_sql_query($db, $sql, $params);
+                            $tag_id = $checks->fetchALL()[0]["id"];
+                            $sql = "INSERT INTO imagetotag (image_id, tag_id) VALUES (:imageid, :tagid);";
+                            $params = array(':imageid' => $img, ":tagid" => $tag_id);
+                            exec_sql_query($db, $sql, $params);
+                            $records = reload($db, $movie_id)->fetchALL();
+                        } else {
+                            $already = "This image already has this tag";
+                        }
                     }
                 }
             }
@@ -144,7 +146,7 @@ if ($result) {
                                     <?php if (count($records) != 1) { ?>
                                         <div class="deletehover hidden">
                                             <form id="<?php echo "deletetag" . $counter ?>" action="<?php echo "one.php?" . http_build_query(array('id' => $movie_id)) ?>" class="deleteform" method="post" novalidate>
-                                                <label for="delete"></label>
+                                                <label for="<?php echo "delete" . $counter ?>"></label>
                                                 <button class="deletetag" name="<?php echo $counter; ?>" id="<?php echo "delete" . $counter ?>">X</button>
                                             </form>
                                         </div>

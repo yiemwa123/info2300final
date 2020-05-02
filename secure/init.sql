@@ -78,6 +78,18 @@ INSERT INTO imagetotag (id, image_id, tag_id) VALUES (10, 7, 7);
 INSERT INTO imagetotag (id, image_id, tag_id) VALUES (11, 8, 8);
 INSERT INTO imagetotag (id, image_id, tag_id) VALUES (12, 9, 3);
 INSERT INTO imagetotag (id, image_id, tag_id) VALUES (13, 10, 6);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (14, 10, 5);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (15, 7, 4);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (16, 5, 2);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (17, 6, 8);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (18, 4, 4);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (19, 9, 4);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (20, 9, 7);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (21, 2, 6);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (22, 8, 7);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (23, 8, 6);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (24, 8, 4);
+INSERT INTO imagetotag (id, image_id, tag_id) VALUES (25, 2, 8);
 
 -- CREATE TABLE `examples` (
 -- 	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
