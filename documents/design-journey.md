@@ -203,10 +203,9 @@ SELECT * movies WHERE movie.id=...;
 > Plan any PHP code you'll need.
 
 ```
-function printtable {
-    print header
-        for each record
-            print all fields
+function reload {
+    sql query for a specific movie
+    display results
 }
 
 
@@ -218,6 +217,10 @@ if tag is valid{
 if post request to add movie{
     insert sql query
     add corresponding foreign keys
+    if uploaded image has correct file size and extension{
+    insert into images table
+    update foreign keys
+}
 }
 
 if post request to delete movie{
@@ -234,14 +237,11 @@ if get request for search{
 }
 
 if get request to view movie information{
-    return proper query string parameter
+    return proper query string parameter to take the user to the desired details page
 }
 
-if uploaded image has correct file size and extension{
-    insert into images table
-    update foreign keys
-}
-function movieblock {
+
+function printblock {
     display movie and title
 }
 ```
@@ -295,3 +295,4 @@ How to remove a tag from an existing image:
 
 ## Reflection (Final Submission)
 > Take this time to reflect on what you learned during this assignment. How have you improved since starting this class?
+- I think that part that I improved on the most was debugging. I learned new tools to debug and I also learned how to look at reference documentation myself. I built a lot of skills that helped learn unfamiliar things. One of the more biggest improvements is obviously being able to build a more complex website with more functionality. I also think I have a better mental model than when I started too.

@@ -30,7 +30,7 @@ if ($result) {
         settype($deleteid, "integer");
         if (isset($_POST[$deleteid])) {
             $sql = "DELETE FROM imagetotag WHERE tag_id=:counter AND image_id=:imgid;";
-            $params = array(":counter" => $deleteid, ":imgid"=>$img);
+            $params = array(":counter" => $deleteid, ":imgid" => $img);
             exec_sql_query($db, $sql, $params);
             $records = reload($db, $movie_id)->fetchALL();
         }
@@ -100,7 +100,7 @@ if ($result) {
 
 
     <?php
-    if (!empty($movie_id)&&!empty($records)) {
+    if (!empty($movie_id) && !empty($records)) {
 
         if (!isset($delete)) {
     ?>
@@ -108,14 +108,13 @@ if ($result) {
             <div class="detailspage">
                 <div class="menu" id="menu">
                     <h2><?php echo $name ?></h2>
-                    <cite> Button source: <a href="https://pngio.com/images/png-a1138956.html">PNGIO</a></cite>
                     <form id="deletephoto" action="<?php echo "one.php?" . http_build_query(array('id' => $movie_id)) ?>" method="post" class="hidden" novalidate>
-                    <!-- https://pngio.com/images/png-a1138956.html-->
+                        <!-- https://pngio.com/images/png-a1138956.html-->
                         <button name="delete" id="delete" type="submit"> <img src="images/delete.png" alt="delete button" /></button>
                     </form>
                 </div>
-                <div class="imagedetails">
 
+                <div class="imagedetails">
                     <div class="row">
                         <div class="leftside">
                             <!-- <div class="menu" id="menu"> -->
@@ -128,6 +127,7 @@ if ($result) {
                             </div> -->
                         </div>
                         <div class="details">
+                            <cite> Button source: <a href="https://pngio.com/images/png-a1138956.html">PNGIO</a></cite>
                             <p class="descr">Year Released: <?php echo $year; ?></p>
                             <p class="descr">Movie Rating: <?php echo $rating; ?></p>
                             <p class="descr">Synopsis: <?php echo $synopsis; ?></p>
