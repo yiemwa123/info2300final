@@ -10,6 +10,8 @@
 
 
     <div class="content">
+        <h2>Welcome to Studio Ghibli! </h2>
+        <p class="intro">Welcome to the Studio Ghibli Movie Catalog where fans can find and share information on all the Studio Ghibli Movies! See something that's wrong? No worries! Just update the catalog by deleting the entry or by deleting one of its tagson its page! </p>
         <h2>All Movies</h2>
         <?php
         $sql = "SELECT movies.movie_name, images.image_ext, movies.id, movies.sources FROM movies INNER JOIN images ON movies.image_id=images.id;";
