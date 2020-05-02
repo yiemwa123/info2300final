@@ -108,9 +108,10 @@ if ($result) {
             <div class="detailspage">
                 <div class="menu" id="menu">
                     <h2><?php echo $name ?></h2>
+                    <cite> Button source: <a href="https://pngio.com/images/png-a1138956.html">PNGIO</a></cite>
                     <form id="deletephoto" action="<?php echo "one.php?" . http_build_query(array('id' => $movie_id)) ?>" method="post" class="hidden" novalidate>
+                    <!-- https://pngio.com/images/png-a1138956.html-->
                         <button name="delete" id="delete" type="submit"> <img src="images/delete.png" alt="delete button" /></button>
-                        <!-- https://pngio.com/images/png-a1138956.html-->
                     </form>
                 </div>
                 <div class="imagedetails">

@@ -177,8 +177,8 @@ image_to_tag(
 > Plan your database queries. You may use natural language, pseudocode, or SQL.
 > Using your request plan above, plan all of the queries you need.
 ```sql
-SELECT movies.name , images.id FROM ghibli LEFT OUTER JOIN images ON ghibli.id=images.movie_id WHERE movie.name LIKE '%' || :search || '%';
-SELECT movies.name , images.id FROM ghibli LEFT OUTER JOIN images ON ghibli.id=images.movie_id LEFT OUTER JOIN tags ON images.id=tags.images_id WHERE tags.tag_name LIKE '%' || :search || '%';
+SELECT movies.name , images.id FROM ghibli INNER JOIN images ON ghibli.id=images.movie_id WHERE movie.name LIKE '%' || :search || '%';
+SELECT movies.name , images.id FROM ghibli INNER JOIN images ON ghibli.id=images.movie_id INNER JOIN tags ON images.id=tags.images_id WHERE tags.tag_name LIKE '%' || :search || '%';
 INSERT INTO movies (all fields) VALUES (values from input);
 INSERT INTO images (all fields) VALUES (values from input);
 UPDATE movies SET image_id=(id of that image) WHERE (moviename=...)
@@ -193,16 +193,15 @@ SELECT * movies WHERE movie.id=...;
 ## Code Planning (Milestone 1)
 > Plan what top level PHP pages you'll need.
 - Home Page
-- All Movies Page
 - Form Page
 
 > Plan what partials you'll need.
 - Nav Bar
 - Movie details page formatting
+- list of tags partial
 
 > Plan any PHP code you'll need.
 
-Example:
 ```
 function printtable {
     print header
@@ -210,12 +209,6 @@ function printtable {
             print all fields
 }
 
-function checkinput{
-    if inputs are valid
-        return true
-    else
-        return false
-}
 
 if tag is valid{
     add tag to the tags table
@@ -230,10 +223,6 @@ if post request to add movie{
 if post request to delete movie{
     delete sql query
     delete all corresponding foreign keys
-}
-
-if post request to update information{
-    update sql query
 }
 
 if get request for search{
@@ -265,36 +254,43 @@ function movieblock {
 > For each set of instructions, assume the grader is starting from index.php.
 
 Viewing all images in your gallery:
-1.
+1. You can view all the images on index.php
 2.
 
 View all images for a tag:
-1.
+1. search the tag in the search bar
 2.
 
 View a single image and all the tags for that image:
-1.
-2.
+1. Click on the image
+2. You will be taken to a separate page with details
 
 How to upload a new image:
-1.
-2.
+1. Go to the add movie form in the nav bar
+2. Fill out all the fields
+3. Click the add movie button
+4. There should be a confirmation
 
 How to delete an image:
-1.
-2.
+1. Go to the image details page of the image you want to delete
+2. Hover over the title of the movie
+3. A trash can icon will show up
+4. Click the trash can
+5. This should take you to a confirmation page
 
 How to view all tags at once:
-1.
-2.
+1. You will see all the tags on the form page
+2. When you perform a search the tags will also show up
 
 How to add a tag to an existing image:
-1.
-2.
+1. Click on the image for which you would like to add a tag
+2. There will be an add tag form at the bottom
+3. Enter the tag and hit the plus button to add it
 
 How to remove a tag from an existing image:
-1.
-2.
+1. Click on the image from which you would like to remove a tag
+2. Hover over the list of tags
+3. Click on the X button next to the tag you want to delete
 
 
 ## Reflection (Final Submission)

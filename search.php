@@ -1,7 +1,6 @@
 <?php include("includes/init.php");
 
 const listofoptions = array("Title" => "title", "Keywords" => "tags");
-$movie_name = $_POST['first'];
 $field = $_GET['field'];
 if (isset($field)) {
   $field = filter_var($field, FILTER_SANITIZE_STRING);
@@ -44,7 +43,7 @@ function inlist($field, $listoffields)
 
     <h2>Search Results </h2>
 
-    <?php if (isset($_GET["search"])) {
+    <?php if (isset($_GET["search"]) && $valid_field && !empty($_GET["moviesearch"])) {
       $moviesearch = $_GET['moviesearch'];
       $moviesearch = filter_var($moviesearch, FILTER_SANITIZE_STRING);
       if ($_GET["field"] == "tags") {
@@ -64,7 +63,7 @@ function inlist($field, $listoffields)
             printblock("uploads/images/" . $imageid . "." . $ext, $moviename, $details, $sources);
           }
         }
-      } else if ($_GET["field"] == "title"){
+      } else if ($_GET["field"] == "title" && !empty($_GET["moviesearch"])){
         $sql = "SELECT movies.id, movies.movie_name, images.image_ext, movies.sources, movies.image_id FROM movies INNER JOIN images ON movies.image_id=images.id WHERE movie_name LIKE :moviesearch || '%';";
         $params = array(':moviesearch' => $moviesearch);
         $result = exec_sql_query($db, $sql, $params);
@@ -82,7 +81,10 @@ function inlist($field, $listoffields)
           }
         }
       }
-    } ?>
+    } else {
+      echo "<h2> Search field or term not valid </h2>";
+    }
+      ?>
 
   </div>
 
