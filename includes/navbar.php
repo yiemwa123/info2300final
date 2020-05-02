@@ -38,36 +38,19 @@ function printblock($img, $moviename, $details, $source)
 { ?>
 
   <div class="block">
-      <a href="<?php echo $details ?>">
-        <img src="<?php echo ($img); ?>" class="movieposter" alt="Theatrical poster for <?php echo ($moviename) ?>" />
-    <p class="moviename"> <?php echo ($moviename) ?> </p>
-    <cite>Source: <a href="<?php echo $source?>">Wikipedia</a></cite>
+    <a href="<?php echo $details; ?>">
+      <img src="<?php echo ($img); ?>" class="movieposter" alt="Theatrical poster for <?php echo ($moviename); ?>" />
     </a>
+    <p class="moviename"> <?php echo ($moviename); ?> </p>
+    <?php if (!empty($source)) { ?>
+      <a href="<?php echo $source; ?>">Source: Wikipedia</a>
+    <?php } else { ?>
+      <a href=''> Contributer </a>
+    <?php } ?>
   </div>
 <?php }
 
 
-//was planning on using this function to
-function showresults($movies)
-{
-
-  foreach ($movies as $movie) {
-
-    $id = $movie["id"];
-    settype($id, "string");
-    $moviename = $movie["movie_name"];
-    $ext = $movie["image_ext"];
-    $details = "one.php?id=" . $id;
-    $sources = $movie["sources"];
-    printblock("uploads/images/" . $id . "." . $ext, $moviename, $details, $sources);
-  }
-}
-
-//very basic implementation of searching through tags.
-//always redirects search to index.php since I have this code placed there as well
-//will not work on other pages with sql queries, need to figure out how to implement this so that the search can be performed on all pages
-//potentially do a separate search page
-//will filter input and escape output later
 
 // if search form submitted
 if (isset($_GET["search"])) {

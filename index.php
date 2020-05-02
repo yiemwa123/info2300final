@@ -1,4 +1,5 @@
-<?php include("includes/init.php"); ?>
+<?php include("includes/init.php");
+$titletag="Home";?>
 <!DOCTYPE html>
 <html lang="en">
 

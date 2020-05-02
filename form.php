@@ -16,6 +16,7 @@ $taginput = filter_var($taginput, FILTER_SANITIZE_STRING);
 $inputarray = array($title, $year, $rating, $synopsis, $taginput);
 $showerror = FALSE;
 $showsuccess = FALSE;
+$titletag="Add Movie";
 
 
 if (isset($_POST["addmovie"])) {
@@ -122,7 +123,6 @@ function printinput()
             <?php
             printinput();
             ?>
-    </div>
     <div class="row">
         <label class="label" for="poster">Movie Image: </label>
         <input id="poster" type="file" name="poster" />
@@ -131,8 +131,7 @@ function printinput()
         <button class="addmovie" name="addmovie" type="submit"> Add Movie</button>
     </div>
     </form>
-    </div>
-
+</div>
 </body>
 
 </html>

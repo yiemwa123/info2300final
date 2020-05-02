@@ -23,6 +23,7 @@ if ($result) {
     $rating = $records[0]["rating"];
     $synopsis = $records[0]["synopsis"];
     $source = $records[0]["sources"];
+    $titletag=$records[0]["movie_name"];
 
 
     foreach ($records as $record) {
@@ -110,6 +111,7 @@ if ($result) {
                     <h2><?php echo $name ?></h2>
                     <form id="deletephoto" action="<?php echo "one.php?" . http_build_query(array('id' => $movie_id)) ?>" method="post" class="hidden" novalidate>
                         <!-- https://pngio.com/images/png-a1138956.html-->
+                        <label for="delete"></label>
                         <button name="delete" id="delete" type="submit"> <img src="images/delete.png" alt="delete button" /></button>
                     </form>
                 </div>
@@ -137,11 +139,11 @@ if ($result) {
                             foreach ($records as $record) {
                                 $counter = $record["id"];
                                 $tag = $record["tag_name"]; ?>
-                                <div class="tagrow" id="deletesection">
+                                <div class="tagrow">
                                     <p class="tags"><?php echo $tag; ?> </p>
                                     <?php if (count($records) != 1) { ?>
-                                        <div id="deletehover" class="deletehover hidden">
-                                            <form id="<?php echo "deletetag" . $counter ?>" action="<?php echo "one.php?id=" . $movie_id ?>" class="deleteform" method="post" novalidate>
+                                        <div class="deletehover hidden">
+                                            <form id="<?php echo "deletetag" . $counter ?>" action="<?php echo "one.php?" . http_build_query(array('id' => $movie_id)) ?>" class="deleteform" method="post" novalidate>
                                                 <label for="delete"></label>
                                                 <button class="deletetag" name="<?php echo $counter; ?>" id="<?php echo "delete" . $counter ?>">X</button>
                                             </form>
@@ -157,7 +159,7 @@ if ($result) {
                             }
                             ?>
 
-                            <form id="addtag" action="<?php echo "one.php?id=" . $movie_id ?>" method="post" novalidate>
+                            <form id="addtag" action="<?php echo "one.php?" . http_build_query(array('id' => $movie_id))  ?>" method="post" novalidate>
                                 <label class="label descr" for="tag"> Add Tag: </label>
                                 <input id="tag" type="text" name="tag" required />
                                 <button class="addtag" name="addtag">+</button>

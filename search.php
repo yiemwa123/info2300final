@@ -8,6 +8,9 @@ if (isset($field)) {
   $field = strtolower($field);
 };
 $valid_field = inlist($field, listofoptions);
+$moviesearch = $_GET['moviesearch'];
+$moviesearch = filter_var($moviesearch, FILTER_SANITIZE_STRING);
+$titletag="Search Results"
 
 ?>
 
@@ -44,8 +47,7 @@ function inlist($field, $listoffields)
     <h2>Search Results </h2>
 
     <?php if (isset($_GET["search"]) && $valid_field && !empty($_GET["moviesearch"])) {
-      $moviesearch = $_GET['moviesearch'];
-      $moviesearch = filter_var($moviesearch, FILTER_SANITIZE_STRING);
+
       if ($_GET["field"] == "tags") {
         $sql = "SELECT movies.id, movies.movie_name, images.image_ext, movies.sources, imagetotag.image_id FROM movies INNER JOIN images ON movies.image_id=images.id INNER JOIN imagetotag ON images.id=imagetotag.image_id INNER JOIN tags ON tags.id=imagetotag.tag_id WHERE tag_name=:moviesearch;";
         $params = array(':moviesearch' => $moviesearch);
@@ -63,7 +65,7 @@ function inlist($field, $listoffields)
             printblock("uploads/images/" . $imageid . "." . $ext, $moviename, $details, $sources);
           }
         }
-      } else if ($_GET["field"] == "title" && !empty($_GET["moviesearch"])){
+      } else if ($_GET["field"] == "title" && !empty($_GET["moviesearch"])) {
         $sql = "SELECT movies.id, movies.movie_name, images.image_ext, movies.sources, movies.image_id FROM movies INNER JOIN images ON movies.image_id=images.id WHERE movie_name LIKE :moviesearch || '%';";
         $params = array(':moviesearch' => $moviesearch);
         $result = exec_sql_query($db, $sql, $params);
@@ -84,7 +86,7 @@ function inlist($field, $listoffields)
     } else {
       echo "<h2> Search field or term not valid </h2>";
     }
-      ?>
+    ?>
 
   </div>
 
