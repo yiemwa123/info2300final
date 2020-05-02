@@ -60,12 +60,20 @@ Be clear and concise in your writing. Bullets points are encouraged.
 ![](home2.jpg)
 ![](search2.jpg)
 
-### Third interation (final)
+### Third iteration
 - All other pages are the same as before except for the image details page and the form. I added options to add tags on both of these pages
 
 ![](edit3.jpg)
 ![](form3.jpg)
 
+
+### Fourth iteration (final)
+- The nav bar is kept pretty much the same, but decided to cut down on some stuff to make the interaction less confusing. I decided to list the tags in the form and search page, because I think that is when it would be the most useful to see the list of tags. I also decided to allow the user to delete a movie all together instead of just the image as I think this would be a lot less confusing of UI.
+
+![](finalhome.jpg)
+![](finalform.jpg)
+![](finaldetails.jpg)
+![](finalsearch.jpg)
 
 ## Design Patterns (Milestone 1)
 > Explain how your site leverages existing design patterns for image galleries.
@@ -113,15 +121,7 @@ Be clear and concise in your writing. Bullets points are encouraged.
 
 - Request: delete movie photo
     - Type: POST
-    - Params: image_id
-
-- Request: replace movie photo
-    - Type: POST
-    - Params: image_id
-
-- Request: update information
-    - Type: POST
-    - Params: title or year or rating or synopsis
+    - Params: image_id, movies.id
 
 - Request: add tags
     - Type: POST
@@ -129,7 +129,7 @@ Be clear and concise in your writing. Bullets points are encouraged.
 
 - Request: delete tags
     - Type: POST
-    - Params: tag_id, tag_name
+    - Params: imagetotag.tag_id, imagetotag.image_id
 
 
 
@@ -149,7 +149,8 @@ name: TEXT {U, Not}
 year: INTEGER {}
 rating: TEXT {}
 synopsis: TEXT {}
-image_id: INTEGER {}
+source: TEXT{}
+image_id: INTEGER UNIQUE{}
 )
 
 images (
@@ -163,7 +164,7 @@ id : INTEGER {PK, U, Not, AI}
 tag_name: TEXT {U, Not}
 )
 
-image_to_tag(
+imagetotag(
     id : INTEGER {PK, U, Not, AI}
     image_id: INTEGER {Not}
     tag_id: INTEGER {Not}
@@ -184,7 +185,6 @@ INSERT INTO images (all fields) VALUES (values from input);
 UPDATE movies SET image_id=(id of that image) WHERE (moviename=...)
 -- works for other fields too
 DELETE FROM images WHERE image.id=();
-UPDATE movies SET image_id IS NULL;
 INSERT INTO tags (all fields) VALUES (values from input);
 DELETE FROM tags WHERE tag.id=();
 SELECT * movies WHERE movie.id=...;
@@ -197,7 +197,7 @@ SELECT * movies WHERE movie.id=...;
 
 > Plan what partials you'll need.
 - Nav Bar
-- Movie details page formatting
+- Head
 - list of tags partial
 
 > Plan any PHP code you'll need.
@@ -237,12 +237,22 @@ if get request for search{
 }
 
 if get request to view movie information{
-    return proper query string parameter to take the user to the desired details page
+    return proper query string parameter (http build query) to take the user to the desired details page
 }
-
 
 function printblock {
     display movie and title
+}
+if post request to add tag{
+    If tag already exists:
+        find id of that tag
+        add to imagetotag table
+    if tag does not exist:
+        insert into tag table
+        insert into image to tag table
+}
+if post request to delete tag{
+    delete from imagetotag table
 }
 ```
 
@@ -279,8 +289,10 @@ How to delete an image:
 5. This should take you to a confirmation page
 
 How to view all tags at once:
-1. You will see all the tags on the form page
-2. When you perform a search the tags will also show up
+1. Go to the form page
+2. All tags are listed at the top
+3. Perform a search
+4. Tags will also be listed at the top
 
 How to add a tag to an existing image:
 1. Click on the image for which you would like to add a tag

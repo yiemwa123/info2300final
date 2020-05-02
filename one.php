@@ -132,9 +132,19 @@ if ($result) {
                         </div>
                         <div class="details">
                             <cite> Button source: <a href="https://pngio.com/images/png-a1138956.html">PNGIO</a></cite>
-                            <p class="descr">Year Released: <?php echo $year; ?></p>
-                            <p class="descr">Movie Rating: <?php echo $rating; ?></p>
-                            <p class="descr">Synopsis: <?php echo $synopsis; ?></p>
+                            <div class="deets">
+                                <p class="descr">Year Released: </p>
+                                <p class="info"><?php echo $year; ?></p>
+                            </div>
+                            <div class="deets">
+                                <p class="descr">Movie Rating: </p>
+                                <p class="info"><?php echo $rating; ?></p>
+                            </div>
+                            <div class="deets">
+                                <p class="descr">Synopsis: </p>
+                                <p class="info"><?php echo $synopsis; ?></p>
+                            </div>
+
                             <p class="descr">Tags: </p>
 
                             <?php

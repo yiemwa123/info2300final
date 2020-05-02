@@ -134,7 +134,7 @@ ul .other:hover{
 } */
 .details{
     margin-left: 40px;
-    margin-top: 5%;
+    width: 50%;
 }
 .imagedetails{
     display: flex;
@@ -150,7 +150,7 @@ ul .other:hover{
 }
 .tags li{
     display: inline-block;
-    background-color: #cea6f3;
+    background-color: #ac89cc;
     padding: 10px;
     margin: 0px 10px 10px 10px;
 }
@@ -159,8 +159,12 @@ ul .other:hover{
 }
 .detailspage h2{
     display: flex;
-    justify-content: center;
+    margin-left: 13.5%;
     margin-bottom: 20px;
+}
+.detailspage{
+    display: flex;
+    flex-direction: column;
 }
 
 .block img{
@@ -186,8 +190,8 @@ ul .other:hover{
 }
 #delete{
     position: absolute;
-    top:3%;
-    left: 63%;
+    top:15%;
+    left: 40%;
 }
 .tagrow{
     display:flex;
@@ -217,4 +221,10 @@ ul .other:hover{
 .works{
     margin-left: 45%;
     margin-bottom: 20px;
+}
+.deets{
+    display: flex;
+}
+.info{
+    margin-left: 3px;
 }

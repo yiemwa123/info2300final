@@ -1,5 +1,5 @@
 <?php include("includes/init.php");
-const inputs = array("Title: " => "title", "Year: " => "year", "Movie Rating: " => "rating", "Synopsis: " => "synopsis", "Tags: " => "tag");
+const inputs = array("Title: " => "title", "Year: " => "year", "Movie Rating (G, PG): " => "rating", "Synopsis: " => "synopsis", "Tags: " => "tag");
 const MAX_FILE_SIZE = 1000000;
 $poster = $_FILES['poster'];
 $title = $_POST['title'];
