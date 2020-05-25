@@ -139,6 +139,7 @@ ul .other:hover{
 .imagedetails{
     display: flex;
     justify-content: center;
+    margin-left: 13.5%;
 }
 .movieposter{
     text-decoration: none;
