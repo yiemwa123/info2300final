@@ -8,17 +8,17 @@
     "packages": [],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "~7.1.0",
+        "php": "~7.3.29",
         "ext-sqlite3": "*",
         "ext-pdo_sqlite": "*"
     },
     "platform-dev": [],
     "platform-overrides": {
-        "php": "7.1.0"
+        "php": "7.3.29"
     }
 }
